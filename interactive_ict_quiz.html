@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار الوحدة الأولى - تكنولوجيا المعلومات والاتصالات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        .question-card {
+            transition: all 0.3s ease;
+        }
+        .question-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Header Section -->
+    <header class="bg-blue-700 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-xl sm:text-2xl font-bold">اختبار الوحدة الأولى: ما هي المعلومات؟ وأخلاقيات المعلومات</h1>
+                <p class="text-blue-100 text-sm mt-1">الصف الأول الثانوي - الحاسب الآلي وتكنولوجيا المعلومات</p>
+            </div>
+            <!-- Timer Display -->
+            <div id="timer-box" class="bg-blue-900/80 border border-blue-400 px-4 py-2 rounded-lg text-center flex items-center gap-2 shadow-inner">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-300 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div>
+                    <span class="text-xs block text-blue-200">الوقت المتبقي</span>
+                    <span id="timer" class="font-mono text-xl font-bold tracking-wider text-yellow-300">60:00</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+
+        <!-- Progress Bar -->
+        <div class="mb-6 bg-white p-4 rounded-xl shadow-sm border border-slate-200 sticky top-20 z-40 bg-opacity-95 backdrop-blur">
+            <div class="flex justify-between text-sm font-semibold mb-2 text-slate-600">
+                <span>تقدم الاختبار</span>
+                <span id="progress-text">0 من 12 سؤالاً تمت إجابته</span>
+            </div>
+            <div class="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden">
+                <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full w-0 transition-all duration-300"></div>
+            </div>
+        </div>
+
+        <!-- Quiz Form -->
+        <form id="quiz-form" class="space-y-6">
+
+            <!-- Q1 -->
+            <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-slate-200" id="q-card-q1">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-blue-100 text-blue-800 font-bold px-3 py-1 rounded-md text-sm">السؤال 1</span>
+                    <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded">درجة واحدة</span>
+                </div>
+                <p class="text-lg font-semibold mb-4 text-slate-900">قام أحد الباحثين بتسجيل درجات الحرارة لمدينة القاهرة يومياً لمدة شهر. تُصنّف هذه القيمة المسجلة قبل تحليلها أو تفسيرها على أنها:</p>
+                <div class="space-y-2">
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q1" value="A" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">أ) معلومات (Information)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q1" value="B" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ب) بيانات (Data)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q1" value="C" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ج) معرفة (Knowledge)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q1" value="D" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">د) حكمة (Wisdom)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-slate-200" id="q-card-q2">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-blue-100 text-blue-800 font-bold px-3 py-1 rounded-md text-sm">السؤال 2</span>
+                    <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded">درجة واحدة</span>
+                </div>
+                <p class="text-lg font-semibold mb-4 text-slate-900">أي مما يلي يُعد من خصائص المعلومات والتي تعني "عدم إمكانية محو المعلومات بالكامل بمجرد إنشائها ونشرها"؟</p>
+                <div class="space-y-2">
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q2" value="A" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">أ) قابلية التكرار (Reproducibility)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q2" value="B" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ب) الانتشار (Propagation)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q2" value="C" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ج) الاستمرارية / الثبات (Persistence)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q2" value="D" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">د) المرونة (Flexibility)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-slate-200" id="q-card-q3">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-blue-100 text-blue-800 font-bold px-3 py-1 rounded-md text-sm">السؤال 3</span>
+                    <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded">درجة واحدة</span>
+                </div>
+                <p class="text-lg font-semibold mb-4 text-slate-900">المعلومات التي تحصل عليها من خلال البحث والتجربة الشخصية المباشرة تسمى:</p>
+                <div class="space-y-2">
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q3" value="A" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">أ) معلومات ثانوية (Secondary Information)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q3" value="B" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ب) معلومات أولية (Primary Information)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q3" value="C" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ج) معلومات وسيطة (Media Information)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q3" value="D" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">د) معلومات افتراضية (Virtual Information)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-slate-200" id="q-card-q4">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-blue-100 text-blue-800 font-bold px-3 py-1 rounded-md text-sm">السؤال 4</span>
+                    <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded">درجة واحدة</span>
+                </div>
+                <p class="text-lg font-semibold mb-4 text-slate-900">تُصنّف أقراص DVD ومحركات أقراص USB والتخزين السحابي ضمن نوع الوسائط التالي:</p>
+                <div class="space-y-2">
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q4" value="A" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">أ) وسائط التعبير (Expression Media)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q4" value="B" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ب) وسائط النقل والإرسال (Transmission Media)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q4" value="C" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ج) وسائط التسجيل والتخزين (Recording Media)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q4" value="D" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">د) وسائط العرض الرقمي (Digital Display Media)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-slate-200" id="q-card-q5">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-blue-100 text-blue-800 font-bold px-3 py-1 rounded-md text-sm">السؤال 5</span>
+                    <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded">درجة واحدة</span>
+                </div>
+                <p class="text-lg font-semibold mb-4 text-slate-900">مصطلح يُقصد به "القدرة على فهم معنى وخصائص الوسائط وتفسير المعلومات التي تم الحصول عليها بدقة":</p>
+                <div class="space-y-2">
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q5" value="A" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">أ) أخلاقيات المعلومات (Information Ethics)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q5" value="B" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ب) الثقافة الإعلامية / الثقافة المعلوماتية (Media Literacy)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q5" value="C" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ج) الهندسة الاجتماعية (Social Engineering)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q5" value="D" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">د) الأمن السيبراني (Cyber Security)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-slate-200" id="q-card-q6">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-blue-100 text-blue-800 font-bold px-3 py-1 rounded-md text-sm">السؤال 6</span>
+                    <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded">درجة واحدة</span>
+                </div>
+                <p class="text-lg font-semibold mb-4 text-slate-900">الميزة المدمجة في الهواتف الذكية والتي قد تتسبب في خطورة تحديد موقع منزل المستخدم من خلال الصور تلحق بها معلومات تُعرف بـ:</p>
+                <div class="space-y-2">
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q6" value="A" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">أ) البصمة الرقمية (Digital Fingerprint)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q6" value="B" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ب) العلامة الجغرافية (Geotagging)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q6" value="C" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ج) التوقيع الرقمي (Digital Signature)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q6" value="D" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">د) حقوق المبدعين (Copyrights)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-slate-200" id="q-card-q7">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-blue-100 text-blue-800 font-bold px-3 py-1 rounded-md text-sm">السؤال 7</span>
+                    <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded">درجة واحدة</span>
+                </div>
+                <p class="text-lg font-semibold mb-4 text-slate-900">قيام شخص آخر بإنشاء حساب باسمك أو استخدام بياناتك لسرقة هويتك على شبكات التواصل يُعد جريمة تُعرف بـ:</p>
+                <div class="space-y-2">
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q7" value="A" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">أ) إدمان الإنترنت (Internet Addiction)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q7" value="B" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ب) انتحال الشخصية (Identity Theft)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q7" value="C" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ج) القرصنة الأخلاقية (Ethical Hacking)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q7" value="D" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">د) الهندسة العكسية (Reverse Engineering)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-slate-200" id="q-card-q8">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-blue-100 text-blue-800 font-bold px-3 py-1 rounded-md text-sm">السؤال 8</span>
+                    <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded">درجة واحدة</span>
+                </div>
+                <p class="text-lg font-semibold mb-4 text-slate-900">عملية مقارنة المعلومات التي تحصل عليها من مصادر متعددة مع معلومات أخرى لتحديد مدى دقتها وموثوقيتها تُعرف بـ:</p>
+                <div class="space-y-2">
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q8" value="A" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">أ) التحقق المتبادل (Cross-checking)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q8" value="B" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ب) المعالجة الإلكترونية (Electronic Processing)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q8" value="C" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ج) التشفير الرقمي (Digital Encryption)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q8" value="D" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">د) النشر الإلكتروني (Electronic Publishing)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-slate-200" id="q-card-q9">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-blue-100 text-blue-800 font-bold px-3 py-1 rounded-md text-sm">السؤال 9</span>
+                    <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded">درجة واحدة</span>
+                </div>
+                <p class="text-lg font-semibold mb-4 text-slate-900">أي من الخيارات التالية يُعتبر مثالاً صحيحاً على "وسائط التعبير" (Expression Media)؟</p>
+                <div class="space-y-2">
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q9" value="A" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">أ) الصحف والتلفزيون</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q9" value="B" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ب) الورق والأقراص المدمجة</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q9" value="C" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ج) النص والصوت والفيديو والصور</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q9" value="D" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">د) شبكة الإنترنت وخطوط الهاتف</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-slate-200" id="q-card-q10">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-blue-100 text-blue-800 font-bold px-3 py-1 rounded-md text-sm">السؤال 10</span>
+                    <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded">درجة واحدة</span>
+                </div>
+                <p class="text-lg font-semibold mb-4 text-slate-900">المعلومات المتعمدة الكاذبة والشائعات التي لا أساس لها من الصحة تُعرف بـ:</p>
+                <div class="space-y-2">
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q10" value="A" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">أ) المعلومات المضللة والشائعات (Disinformation and rumors)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q10" value="B" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ب) المعلومات الثانوية (Secondary Information)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q10" value="C" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ج) البيانات الضخمة (Big Data)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q10" value="D" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">د) المحتوى مفتوح المصدر (Open Source Content)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q11 -->
+            <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-slate-200" id="q-card-q11">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-blue-100 text-blue-800 font-bold px-3 py-1 rounded-md text-sm">السؤال 11</span>
+                    <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded">درجة واحدة</span>
+                </div>
+                <p class="text-lg font-semibold mb-4 text-slate-900">أي من العبارات التالية تعبّر بشكل صحيح عن سلوك يتفق مع "أخلاقيات المعلومات"؟</p>
+                <div class="space-y-2">
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q11" value="A" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">أ) إمكانية نشر صور الآخرين في أماكن عامة دون الحاجة للتقيد بخصوصيتهم.</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q11" value="B" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ب) كتابة التعليقات والتعبير بحرية تامة على لوحات الإعلانات المجهولة لأن الهوية غير معروفة.</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q11" value="C" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ج) مراعاة أن هناك أفراداً حقيقيين على الجانب الآخر ومراعاة خصوصيتهم وحقوقهم عند النشر.</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q11" value="D" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">د) إعادة نشر الصور ومقاطع الفيديو المملوكة للآخرين دون إذن طالما لم تحقق منها أرباحاً.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q12 -->
+            <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-slate-200" id="q-card-q12">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-blue-100 text-blue-800 font-bold px-3 py-1 rounded-md text-sm">السؤال 12</span>
+                    <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded">درجة واحدة</span>
+                </div>
+                <p class="text-lg font-semibold mb-4 text-slate-900">المعلومات التي تم تحليلها وتنظيمها بشكل منهجي للمساعدة في حل المشكلات واتخاذ القرارات تُعرف باسم:</p>
+                <div class="space-y-2">
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q12" value="A" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">أ) البيانات (Data)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q12" value="B" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ب) المعرفة (Knowledge)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q12" value="C" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">ج) الوسائط التعبيرية (Expression Media)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-blue-50/50 cursor-pointer transition">
+                        <input type="radio" name="q12" value="D" class="w-4 h-4 text-blue-600 focus:ring-blue-500" onchange="updateProgress()">
+                        <span class="mr-3 text-slate-700">د) الرسائل النصية (Text Messages)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-4">
+                <button type="button" onclick="submitQuiz()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg transition duration-200 text-lg flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    إنهاء الاختبار وإنشاء النتيجة
+                </button>
+            </div>
+        </form>
+
+        <!-- Result Box (Hidden by Default) -->
+        <div id="result-box" class="hidden mt-8 bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-slate-200 text-center">
+            <div id="result-icon" class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-4xl shadow-md">
+                🏆
+            </div>
+            <h2 class="text-2xl font-bold mb-2 text-slate-900" id="result-title">نتيجة الاختبار</h2>
+            <div class="text-4xl font-extrabold text-blue-600 my-4" id="score-display">0 / 12</div>
+            <p class="text-slate-600 mb-6 text-lg" id="result-message"></p>
+
+            <!-- Detailed Analysis Section -->
+            <div class="text-right border-t border-slate-200 pt-6 mt-6">
+                <h3 class="text-xl font-bold mb-4 text-slate-800">مراجعة الإجابات والحلول النموذجية:</h3>
+                <div id="answers-review" class="space-y-4"></div>
+            </div>
+
+            <button onclick="location.reload()" class="mt-8 bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-8 rounded-xl transition shadow-md">
+                إعادة الاختبار
+            </button>
+        </div>
+
+    </main>
+
+    <footer class="bg-slate-800 text-slate-400 text-center py-4 text-sm mt-auto">
+        <p>تم إعداد هذا الاختبار المنهجي وفقاً لمقرر تكنولوجيا المعلومات والاتصالات - للصف الأول الثانوي</p>
+    </footer>
+
+    <script>
+        // Correct answers key and explanations
+        const quizData = {
+            q1: { correct: "B", title: "السؤال 1", text: "تسجيل القيمة قبل تحليلها", explain: "البيانات هي الحقائق الخام الممثلة بالأرقام أو الرموز قبل تحليلها وإعطائها معنى." },
+            q2: { correct: "C", title: "السؤال 2", text: "خصائص المعلومات (عدم إمكانية المحو)", explain: "خاصية الثبات/الاستمرارية (Persistence) تعني أنه بمجرد إنشاء المعلومات ونشرها لا يمكن محوها بالكامل." },
+            q3: { correct: "B", title: "السؤال 3", text: "المعلومات من البحث المباشر", explain: "المعلومات الأولية هي التي تحصل عليها بنفسك مباشرة عبر الملاحظة والتجربة والاستبيانات." },
+            q4: { correct: "C", title: "السؤال 4", text: "تصنيف DVD والـ USB والتخزين السحابي", explain: "تُصنّف هذه الوسائل ضمن وسائط التسجيل والتخزين (Recording Media) المخصصة لحفظ البيانات." },
+            q5: { correct: "B", title: "السؤال 5", text: "فهم وتفسير الوسائط بدقة", explain: "الثقافة الإعلامية/المعلوماتية (Media Literacy) تعني القدرة على الوصول للوسائط وفهمها ونقدها وتفسيرها." },
+            q6: { correct: "B", title: "السؤال 6", text: "المعلومات المكانية بالصور", explain: "العلامة الجغرافية (Geotagging) تقوم بتخزين إحداثيات الموقع الجغرافي داخل الملف الضمني للصورة." },
+            q7: { correct: "B", title: "السؤال 7", text: "استخدام بيانات شخص آخر", explain: "انتحال الشخصية (Identity Theft) هو جريمة استخدام معلومات شخص آخر دون إذنه لسرقة هويته." },
+            q8: { correct: "A", title: "السؤال 8", text: "مقارنة المعلومات من عدة مصادر", explain: "التحقق المتبادل (Cross-checking) يعتمد على مطابقة المعلومات من مصادر متعددة للتأكد من صحتها." },
+            q9: { correct: "C", title: "السؤال 9", text: "أمثلة وسائط التعبير", explain: "وسائط التعبير تشمل الأشكال التي تجسد المحتوى مثل النصوص والأصوات والصور والفيديو." },
+            q10: { correct: "A", title: "السؤال 10", text: "المعلومات الكاذبة والشائعات", explain: "المعلومات المضللة والشائعات هي الأخبار المزيفة المروجة بغرض التضليل." },
+            q11: { correct: "C", title: "السؤال 11", text: "سلوك يطابق أخلاقيات المعلومات", explain: "أخلاقيات المعلومات تتطلب احترام الخصوصية ومراعاة وجود أفراد حقيقيين تتأثر حقوقهم بالنشر." },
+            q12: { correct: "B", title: "السؤال 12", text: "المعلومات المنظمة لحل المشكلات", explain: "المعرفة (Knowledge) هي حاصل الفهم والتحليل المنهجي للمعلومات لاستخدامها في التطبيق وتطبيق الحلول." }
+        };
+
+        const totalQuestions = Object.keys(quizData).length;
+
+        // Timer logic (60 Minutes)
+        let timeLeft = 60 * 60;
+        const timerElement = document.getElementById('timer');
+        
+        const timerInterval = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                submitQuiz();
+            } else {
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+        }, 1000);
+
+        // Update progress bar
+        function updateProgress() {
+            let answeredCount = 0;
+            for (let i = 1; i <= totalQuestions; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected) answeredCount++;
+            }
+            
+            const percentage = (answeredCount / totalQuestions) * 100;
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+            document.getElementById('progress-text').textContent = `${answeredCount} من ${totalQuestions} سؤالاً تمت إجابته`;
+        }
+
+        // Submit and grade quiz
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            let score = 0;
+            const reviewContainer = document.getElementById('answers-review');
+            reviewContainer.innerHTML = '';
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const qKey = `q${i}`;
+                const selected = document.querySelector(`input[name="${qKey}"]:checked`);
+                const userAns = selected ? selected.value : null;
+                const qInfo = quizData[qKey];
+                const isCorrect = userAns === qInfo.correct;
+
+                if (isCorrect) score++;
+
+                // Build review item
+                const reviewCard = document.createElement('div');
+                reviewCard.className = `p-4 rounded-lg border ${isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`;
+                
+                const optionLetters = { 'A': 'أ', 'B': 'ب', 'C': 'ج', 'D': 'د' };
+                const userAnsText = userAns ? optionLetters[userAns] : 'لم يتم الإجابة';
+                const correctAnsText = optionLetters[qInfo.correct];
+
+                reviewCard.innerHTML = `
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="font-bold ${isCorrect ? 'text-green-800' : 'text-red-800'}">${qInfo.title}: ${qInfo.text}</span>
+                        <span class="px-2 py-0.5 rounded text-xs font-bold ${isCorrect ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'}">
+                            ${isCorrect ? 'إجابة صحيحة ✓' : 'إجابة خاطئة ✗'}
+                        </span>
+                    </div>
+                    <p class="text-sm text-slate-700 mt-1">إجابتك: <span class="font-bold">${userAnsText}</span> | الإجابة الصحيحة: <span class="font-bold text-green-700">${correctAnsText}</span></p>
+                    <p class="text-xs text-slate-600 mt-2 bg-white/70 p-2 rounded border border-slate-100"><span class="font-bold">الشرح:</span> ${qInfo.explain}</p>
+                `;
+                reviewContainer.appendChild(reviewCard);
+            }
+
+            // Hide form and show result
+            document.getElementById('quiz-form').classList.add('hidden');
+            const resultBox = document.getElementById('result-box');
+            resultBox.classList.remove('hidden');
+
+            // Display Score & Messages
+            document.getElementById('score-display').textContent = `${score} / ${totalQuestions}`;
+            
+            const resultTitle = document.getElementById('result-title');
+            const resultMsg = document.getElementById('result-message');
+            const resultIcon = document.getElementById('result-icon');
+
+            const percentage = (score / totalQuestions) * 100;
+            if (percentage >= 85) {
+                resultTitle.textContent = "ممتاز جداً! 🎉";
+                resultMsg.textContent = "أداء استثنائي! لديك استيعاب ممتاز لمفاهيم وأخلاقيات تكنولوجيا المعلومات.";
+                resultIcon.textContent = "🏆";
+                resultIcon.className = "w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-4xl bg-green-100 text-green-600 shadow-md";
+            } else if (percentage >= 50) {
+                resultTitle.textContent = "نتيجة جيدة! 👍";
+                resultMsg.textContent = "لقد اجتزت الاختبار بنجاح، يمكنك مراجعة الإجابات الخاطئة أدناه لتعزيز فهمك.";
+                resultIcon.textContent = "⭐";
+                resultIcon.className = "w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-4xl bg-blue-100 text-blue-600 shadow-md";
+            } else {
+                resultTitle.textContent = "يحتاج إلى مراجعة 📚";
+                resultMsg.textContent = "يُنصح بإعادة قراءة الوحدة الأولى والتركيز على مفاهيم البيانات، الوسائط، والأخلاقيات الرقمية.";
+                resultIcon.textContent = "💡";
+                resultIcon.className = "w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-4xl bg-amber-100 text-amber-600 shadow-md";
+            }
+
+            // Scroll to top of results
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
